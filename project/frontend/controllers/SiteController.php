@@ -257,4 +257,19 @@ class SiteController extends Controller
             'model' => $model
         ]);
     }
+    
+    /*
+        regisration admin-user (may be removed or commented)
+    */
+    public function actionAddAdmin()
+    {
+        $admin = new \common\models\User();
+        $admin->username = 'admin';
+        $admin->email = 'admin@positron.ru';
+        $admin->status = \common\models\User::STATUS_ACTIVE;
+        $admin->setPassword('admin');
+        $admin->generateAuthKey();
+        $admin->save();
+        echo 'ok';
+    }
 }
